@@ -1,0 +1,126 @@
+########################################
+# macOS
+########################################
+.DS_Store
+.AppleDouble
+.LSOverride
+
+########################################
+# Xcode
+########################################
+# Build products
+build/
+DerivedData/
+
+# User-specific settings
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata/
+
+# Xcode 15+ SwiftUI previews
+**/Previews/**
+
+# Xcode playgrounds
+timeline.xctimeline
+playground.xcworkspace
+
+########################################
+# Swift Package Manager
+########################################
+.build/
+Package.resolved
+.swiftpm/xcode/package.xcworkspace
+
+########################################
+# CocoaPods
+########################################
+Pods/
+# Uncomment if you do NOT want to commit Podfile.lock
+# Podfile.lock
+
+########################################
+# Carthage
+########################################
+Carthage/Build/
+
+########################################
+# Fastlane
+########################################
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
+
+########################################
+# Code Coverage / Test
+########################################
+*.gcno
+*.gcda
+*.gcov
+*.xccovreport
+*.xccovarchive
+
+########################################
+# Logs & Temp
+########################################
+*.log
+*.tmp
+*.swp
+*.swo
+
+########################################
+# Environment / Secrets
+########################################
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.mobileprovision
+
+########################################
+# Archives
+########################################
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+########################################
+# Documentation
+########################################
+docs/build/
+
+########################################
+# Third-party tools
+########################################
+# SwiftLint
+.swiftlint.yml
+.swiftlint.cache
+
+# Sourcery
+.sourcery/
+
+# Periphery
+.periphery/
+
+########################################
+# Editor settings
+########################################
+.idea/
+.vscode/
+
+########################################
+# Backup files
+########################################
+*~
+*.bak
+
+########################################
+# Custom (Project specific)
+########################################
+# Claude / AI tools
+.claude/
+.claudeignore
+
