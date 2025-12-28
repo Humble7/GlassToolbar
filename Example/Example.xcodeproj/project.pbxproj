@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		982EDCD52F013D6C00780A98 /* GlassToolbar in Frameworks */ = {isa = PBXBuildFile; productRef = 982EDCD42F013D6C00780A98 /* GlassToolbar */; };
+		982EDD662F01504000780A98 /* GlassToolbar in Frameworks */ = {isa = PBXBuildFile; productRef = 982EDD652F01504000780A98 /* GlassToolbar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				982EDCD52F013D6C00780A98 /* GlassToolbar in Frameworks */,
+				982EDD662F01504000780A98 /* GlassToolbar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 			);
 			name = Example;
 			packageProductDependencies = (
-				982EDCD42F013D6C00780A98 /* GlassToolbar */,
+				982EDD652F01504000780A98 /* GlassToolbar */,
 			);
 			productName = Example;
 			productReference = 982EDB492EFE910600780A98 /* Example.app */;
@@ -114,7 +114,7 @@
 			mainGroup = 982EDB402EFE910600780A98;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				982EDCD32F013D6C00780A98 /* XCLocalSwiftPackageReference "../../GlassToolbar" */,
+				982EDD642F01504000780A98 /* XCLocalSwiftPackageReference "../../GlassToolbar" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 982EDB4A2EFE910600780A98 /* Products */;
@@ -358,14 +358,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		982EDCD32F013D6C00780A98 /* XCLocalSwiftPackageReference "../../GlassToolbar" */ = {
+		982EDD642F01504000780A98 /* XCLocalSwiftPackageReference "../../GlassToolbar" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../../GlassToolbar;
 		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		982EDCD42F013D6C00780A98 /* GlassToolbar */ = {
+		982EDD652F01504000780A98 /* GlassToolbar */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GlassToolbar;
 		};

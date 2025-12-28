@@ -90,8 +90,10 @@ class MiniPlayerAccessoryView: UIView {
     }
 
     deinit {
-        onTap = nil
-        onPlayPause = nil
+        MainActor.assumeIsolated {
+            onTap = nil
+            onPlayPause = nil
+        }
     }
 
     // MARK: - Setup
@@ -183,7 +185,9 @@ class QuickActionAccessoryView: UIView {
     var onAction: ((Int) -> Void)?
 
     deinit {
-        onAction = nil
+        MainActor.assumeIsolated {
+            onAction = nil
+        }
     }
 
     // MARK: - UI Components
@@ -464,8 +468,10 @@ class DualSliderAccessoryView: UIView {
     var onSlider2Changed: ((Float) -> Void)?
 
     deinit {
-        onSlider1Changed = nil
-        onSlider2Changed = nil
+        MainActor.assumeIsolated {
+            onSlider1Changed = nil
+            onSlider2Changed = nil
+        }
     }
 
     // MARK: - UI Components
@@ -776,7 +782,9 @@ class FavoritesListAccessoryView: UIView {
     private var items: [FavoriteItem] = []
 
     deinit {
-        onItemTap = nil
+        MainActor.assumeIsolated {
+            onItemTap = nil
+        }
     }
 
     // MARK: - UI Components
@@ -986,7 +994,9 @@ class HorizontalListAccessoryView: UIView {
     private var configuration: Configuration = .default
 
     deinit {
-        onItemTap = nil
+        MainActor.assumeIsolated {
+            onItemTap = nil
+        }
     }
 
     // MARK: - UI Components
