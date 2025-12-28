@@ -1,4 +1,4 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 5.9
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -17,18 +17,12 @@ let package = Package(
     targets: [
         .target(
             name: "GlassToolbar",
-            path: "Sources/GlassToolbar",
-            swiftSettings: [
-                .swiftLanguageMode(.v6)
-            ]
+            path: "Sources/GlassToolbar"
         ),
         .testTarget(
             name: "GlassToolbarTests",
             dependencies: ["GlassToolbar"],
-            path: "Tests/GlassToolbarTests",
-            swiftSettings: [
-                .swiftLanguageMode(.v6)
-            ]
+            path: "Tests/GlassToolbarTests"
         ),
     ]
 )
