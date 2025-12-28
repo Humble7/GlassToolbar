@@ -448,12 +448,12 @@ Supports binding a secondary accessoryProvider to an item, triggered when tappin
 
 ```swift
 // Create brush list as secondary accessoryProvider
-let brushListView = BrushListAccessoryView()
+let brushListView = HorizontalListAccessoryView()
 brushListView.configure(title: "Brushes", items: [
-    .init(icon: nil, title: "Fine", color: .label, size: 8),
-    .init(icon: nil, title: "Medium", color: .label, size: 14),
-    .init(icon: nil, title: "Thick", color: .label, size: 22)
-], selectedIndex: 1)
+    .init(icon: UIImage(systemName: "pencil.tip"), title: "Fine"),
+    .init(icon: UIImage(systemName: "paintbrush"), title: "Medium"),
+    .init(icon: UIImage(systemName: "paintbrush.pointed"), title: "Thick")
+], selectedIndex: 1, configuration: .init(showsSelection: true, showsCount: true, selectionColor: .label))
 
 GlassToolbarItem(
     title: "Home",
@@ -563,15 +563,29 @@ favoritesView.configure(title: "Favorites", items: [
 ])
 favoritesView.onItemTap = { index in print("Tapped: \(index)") }
 
-// Brush list (horizontal scroll, with selection state)
-let brushListView = BrushListAccessoryView()
+// Horizontal list (horizontal scroll, with configurable selection state)
+let brushListView = HorizontalListAccessoryView()
 brushListView.configure(title: "Brushes", items: [
-    .init(icon: nil, title: "Fine", color: .label, size: 8),
-    .init(icon: nil, title: "Medium", color: .label, size: 14),
-    .init(icon: nil, title: "Thick", color: .label, size: 22),
-    .init(icon: nil, title: "Marker", color: .systemYellow, size: 18)
-], selectedIndex: 1)
+    .init(icon: UIImage(systemName: "pencil.tip"), title: "Fine"),
+    .init(icon: UIImage(systemName: "paintbrush"), title: "Medium"),
+    .init(icon: UIImage(systemName: "paintbrush.pointed"), title: "Thick"),
+    .init(icon: UIImage(systemName: "highlighter"), title: "Marker")
+], selectedIndex: 1, configuration: .init(
+    showsSelection: true,      // Show selection ring
+    showsCount: true,          // Show item count
+    selectionColor: .label,    // Icon/label color when selected
+    borderColor: .systemBlue   // Selection ring border color (optional)
+))
 brushListView.onItemTap = { index in print("Selected brush: \(index)") }
+
+// Without selection (for action buttons like share options)
+let shareListView = HorizontalListAccessoryView()
+shareListView.configure(title: "Share", items: [
+    .init(icon: UIImage(systemName: "doc.on.doc"), title: "Copy"),
+    .init(icon: UIImage(systemName: "message"), title: "Message"),
+    .init(icon: UIImage(systemName: "envelope"), title: "Mail")
+], configuration: .noSelection)  // No selection ring, no count
+shareListView.onItemTap = { index in print("Share action: \(index)") }
 
 // Mini player
 let miniPlayer = MiniPlayerAccessoryView()
@@ -605,7 +619,7 @@ quickActions.configure(actions: [
 |------|-------------|-----------|
 | `DualSliderAccessoryView` | Dual slider + circular preview | Size/opacity adjustment, color selection |
 | `FavoritesListAccessoryView` | Favorites list horizontal scroll | Quick entries, favorites folder |
-| `BrushListAccessoryView` | Brush list with selection state | Drawing tool selection |
+| `HorizontalListAccessoryView` | Horizontal list with configurable selection | Tool selection, share options, action buttons |
 | `MiniPlayerAccessoryView` | Mini player | Music playback control |
 | `StatusAccessoryView` | Status info display | Network status, sync status |
 | `ProgressAccessoryView` | Progress bar display | Download, upload progress |
@@ -920,6 +934,42 @@ All Accessory Views must conform to this protocol for lifecycle management:
 | `cleanup()` | Method | Clean up resources (closures, timers, etc.) |
 
 **Built-in implementations:** All built-in Accessory Views (MiniPlayerAccessoryView, DualSliderAccessoryView, etc.) implement this protocol.
+
+### HorizontalListAccessoryView
+
+A versatile horizontal scrolling list with configurable selection state.
+
+#### ListItem
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `icon` | `UIImage?` | Item icon |
+| `title` | `String` | Item title |
+| `tintColor` | `UIColor` | Icon tint color (default: `.label`) |
+
+#### Configuration
+
+| Property | Type | Default | Description |
+|----------|------|---------|-------------|
+| `showsSelection` | `Bool` | `true` | Whether to show selection ring |
+| `showsCount` | `Bool` | `true` | Whether to show item count in title |
+| `selectionColor` | `UIColor` | `.label` | Icon/label color when selected (adapts to light/dark mode) |
+| `borderColor` | `UIColor?` | `nil` | Selection ring border color (nil uses `selectionColor`) |
+
+#### Preset Configurations
+
+| Preset | Description |
+|--------|-------------|
+| `.default` | Selection enabled, count shown |
+| `.noSelection` | No selection ring, no count (for action buttons) |
+
+#### Methods
+
+| Method | Description |
+|--------|-------------|
+| `configure(title:items:selectedIndex:configuration:)` | Configure the list |
+| `updateSelectionColor(_:)` | Update icon/label selection color |
+| `updateBorderColor(_:)` | Update only the ring border color |
 
 ### ItemPriority
 

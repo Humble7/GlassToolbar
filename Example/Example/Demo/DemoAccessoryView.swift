@@ -967,7 +967,12 @@ class HorizontalListAccessoryView: UIView {
     struct Configuration {
         var showsSelection: Bool = true
         var showsCount: Bool = true
-        var selectionColor: UIColor = .systemBlue
+        var selectionColor: UIColor = .label
+        var borderColor: UIColor?  // nil = use selectionColor
+
+        var effectiveBorderColor: UIColor {
+            borderColor ?? selectionColor
+        }
 
         static let `default` = Configuration()
         static let noSelection = Configuration(showsSelection: false, showsCount: false)
@@ -1095,18 +1100,26 @@ class HorizontalListAccessoryView: UIView {
         configure(title: currentTitle, items: items, selectedIndex: selectedIndex, configuration: configuration)
     }
 
+    /// Update only the border color and refresh the list
+    func updateBorderColor(_ color: UIColor) {
+        configuration.borderColor = color
+        let currentTitle = titleLabel.text ?? ""
+        configure(title: currentTitle, items: items, selectedIndex: selectedIndex, configuration: configuration)
+    }
+
     private func createItemView(item: ListItem, index: Int, isSelected: Bool) -> UIView {
         let container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = false
         container.tag = index
 
         let selectionColor = configuration.selectionColor
+        let borderColor = configuration.effectiveBorderColor
 
         let selectionRing = UIView()
         selectionRing.translatesAutoresizingMaskIntoConstraints = false
-        selectionRing.backgroundColor = isSelected ? selectionColor.withAlphaComponent(0.15) : .clear
+        selectionRing.backgroundColor = isSelected ? borderColor.withAlphaComponent(0.15) : .clear
         selectionRing.layer.borderWidth = isSelected ? 2 : 0
-        selectionRing.layer.borderColor = isSelected ? selectionColor.cgColor : UIColor.clear.cgColor
+        selectionRing.layer.borderColor = isSelected ? borderColor.cgColor : UIColor.clear.cgColor
         selectionRing.layer.cornerRadius = 20
 
         let titleLabel = UILabel()

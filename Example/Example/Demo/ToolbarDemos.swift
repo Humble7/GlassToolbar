@@ -657,7 +657,7 @@ class SwipeGestureDemoVC: UIViewController, UIColorPickerViewControllerDelegate 
             title: "Brush",
             items: brushItems,
             selectedIndex: selectedBrushIndex,
-            configuration: .init(showsSelection: true, showsCount: true, selectionColor: selectedColor)
+            configuration: .init(showsSelection: true, showsCount: true, selectionColor: .label, borderColor: selectedColor)
         )
 
         // Handle brush selection
@@ -720,7 +720,7 @@ class SwipeGestureDemoVC: UIViewController, UIColorPickerViewControllerDelegate 
                 title: "Undo",
                 icon: UIImage(systemName: "arrow.uturn.backward"),
                 isSelectable: false,
-                priority: .primary,
+                priority: .essential,
                 action: { [weak self] in
                     self?.showAlert(title: "Undo", message: "Undo action triggered")
                 }
@@ -729,7 +729,7 @@ class SwipeGestureDemoVC: UIViewController, UIColorPickerViewControllerDelegate 
                 title: "Redo",
                 icon: UIImage(systemName: "arrow.uturn.forward"),
                 isSelectable: false,
-                priority: .primary,
+                priority: .essential,
                 action: { [weak self] in
                     self?.showAlert(title: "Redo", message: "Redo action triggered")
                 }
@@ -737,7 +737,7 @@ class SwipeGestureDemoVC: UIViewController, UIColorPickerViewControllerDelegate 
             GlassToolbarItem(
                 title: "Share",
                 icon: UIImage(systemName: "square.and.arrow.up"),
-                priority: .primary,
+                priority: .essential,
                 sideButton: .styled(
                     .glass,
                     icon: UIImage(systemName: "house"),
@@ -794,6 +794,12 @@ class SwipeGestureDemoVC: UIViewController, UIColorPickerViewControllerDelegate 
             self.view.backgroundColor = self.selectedColor.withAlphaComponent(1.0)
         }
 
+        // Switch toolbar appearance based on color luminance
+        let isLightColor = selectedColor.luminance > 0.5
+        UIView.animate(withDuration: 0.3) {
+            self.toolbarController.overrideUserInterfaceStyle = isLightColor ? .light : .dark
+        }
+
         statusLabel.text = "Background applied!"
 
         // Haptic feedback
@@ -847,8 +853,8 @@ class SwipeGestureDemoVC: UIViewController, UIColorPickerViewControllerDelegate 
         // 3. Update DualSliderAccessoryView colors (circle, sliders)
         dualSliderView.updateBrushColor(color)
 
-        // 4. Update BrushList selection color
-        brushListView.updateSelectionColor(color)
+        // 4. Update BrushList border color only
+        brushListView.updateBorderColor(color)
     }
 }
 
@@ -1241,4 +1247,23 @@ private struct AccessoryWidthPreview: UIViewControllerRepresentable {
 
 #Preview("Accessory Width (iPad)") {
     AccessoryWidthPreview().ignoresSafeArea()
+}
+
+// MARK: - UIColor Extension
+
+extension UIColor {
+    /// Calculate the luminance of the color (0 = dark, 1 = light)
+    var luminance: CGFloat {
+        var red: CGFloat = 0
+        var green: CGFloat = 0
+        var blue: CGFloat = 0
+        var alpha: CGFloat = 0
+
+        guard getRed(&red, green: &green, blue: &blue, alpha: &alpha) else {
+            return 0.5
+        }
+
+        // Standard luminance formula
+        return 0.299 * red + 0.587 * green + 0.114 * blue
+    }
 }
