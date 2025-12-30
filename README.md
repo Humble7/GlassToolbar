@@ -103,7 +103,8 @@ GlassToolbar/
 │   │   ├── GlassToolbarItem.swift
 │   │   ├── GlassSideButtonConfig.swift
 │   │   ├── GlassAccessoryProvider.swift
-│   │   └── ToolbarConfiguration.swift
+│   │   ├── ToolbarConfiguration.swift
+│   │   └── HorizontalListAccessoryView.swift
 │   │
 │   ├── Internal/                           # Internal implementation
 │   │   ├── View/
