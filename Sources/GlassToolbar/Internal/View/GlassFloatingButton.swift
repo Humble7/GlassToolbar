@@ -45,6 +45,8 @@ class GlassFloatingButton: UIView {
         let view = UIVisualEffectView(effect: blur)
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isUserInteractionEnabled = false
+        // Fallback background for transition animations when blur effect is not yet rendered
+        view.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.8)
         return view
     }()
 

@@ -40,6 +40,8 @@ class GlassToolbarView: UIView {
         let blur = UIBlurEffect(style: .systemUltraThinMaterial)
         let view = UIVisualEffectView(effect: blur)
         view.translatesAutoresizingMaskIntoConstraints = false
+        // Fallback background for transition animations when blur effect is not yet rendered
+        view.backgroundColor = UIColor.systemBackground.withAlphaComponent(0.8)
         return view
     }()
 
