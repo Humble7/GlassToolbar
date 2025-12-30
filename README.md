@@ -5,7 +5,15 @@
 [![SPM Compatible](https://img.shields.io/badge/SPM-Compatible-green.svg)](https://swift.org/package-manager/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Glass style custom toolbar built with UIKit and Auto Layout. Supports side floating buttons, bottom accessory views, and space-adaptive layouts.
+Glass style custom toolbar built with UIKit and Auto Layout.
+
+Supports side floating buttons, bottom accessory views, and space-adaptive layouts.
+
+### Used By
+
+<a href="https://apps.apple.com/au/app/dotshake/id6747894313">
+  <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us" alt="Download DotShake" height="40">
+</a>
 
 ## UI Overview
 
@@ -39,6 +47,16 @@ Glass style custom toolbar built with UIKit and Auto Layout. Supports side float
   <img src="docs/4-demo-minimal.png" width="300" />
 </details>
 
+## Showcase
+
+Apps using GlassToolbar in production:
+
+| App | Description |
+|-----|-------------|
+| [DotShake](https://apps.apple.com/au/app/dotshake/id6747894313) | A delightful drawing app for iOS |
+
+> Using GlassToolbar in your app? Feel free to open a PR to add it here!
+
 ## Installation
 
 ### Swift Package Manager
@@ -52,7 +70,13 @@ Or add to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/Humble7/GlassToolbar", from: "1.0.0")
+    .package(url: "https://github.com/Humble7/GlassToolbar", from: "0.0.4")
+]
+
+targets: [
+    .target(
+        dependencies: [.product(name: "GlassToolbar", package: "GlassToolbar")],
+    )
 ]
 ```
 
