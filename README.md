@@ -1107,7 +1107,7 @@ Appearance configuration with dependency injection support, **all visual paramet
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
-| `accessoryToToolbarSpacing` | `CGFloat` | 12 | Accessory to Toolbar spacing |
+| `accessoryToToolbarSpacing` | `CGFloat` | 8 | Accessory to Toolbar spacing |
 | `secondaryAccessorySpacing` | `CGFloat` | 4 | Secondary Accessory spacing |
 | `accessoryContentInsets` | `UIEdgeInsets` | 12/12/12/12 | Accessory content insets |
 | `accessoryCornerRadius` | `CGFloat` | 20 | Accessory view corner radius |
@@ -1173,8 +1173,8 @@ All presets follow the unified **4/8/12/16/24** spacing system:
 | Spacing Level | Example Usage |
 |--------------|---------------|
 | **4pt** | Tight spacing (secondaryAccessorySpacing) |
-| **8pt** | Small spacing (toolbarInternalPadding, compact accessoryToToolbarSpacing) |
-| **12pt** | Medium spacing (default accessoryToToolbarSpacing, compact toolbarPadding) |
+| **8pt** | Small spacing (toolbarInternalPadding, default/compact accessoryToToolbarSpacing) |
+| **12pt** | Medium spacing (spacious accessoryToToolbarSpacing, compact toolbarPadding) |
 | **16pt** | Large spacing (default toolbarPadding, toolbarToSideButtonSpacing) |
 | **24pt** | Extra large spacing (spacious toolbarPadding, ultraMinimalToolbarPadding) |
 
